@@ -98,6 +98,10 @@ if (process.env.OPENCLAW_DEV_MODE === 'true') {
     config.gateway.controlUi.allowInsecureAuth = true;
 }
 
+// Allow Control UI access from any origin (the Worker proxies requests from a different host)
+config.gateway.controlUi = config.gateway.controlUi || {};
+config.gateway.controlUi.allowedOrigins = ['*'];
+
 // Legacy AI Gateway base URL override:
 // ANTHROPIC_BASE_URL is picked up natively by the Anthropic SDK,
 // so we don't need to patch the provider config. Writing a provider
